@@ -1,7 +1,5 @@
 package leavesc.hello.network.http.basis;
 
-import com.readystatesoftware.chuck.ChuckInterceptor;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -12,10 +10,10 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import leavesc.hello.monitor.MonitorInterceptor;
 import leavesc.hello.network.BuildConfig;
 import leavesc.hello.network.holder.ContextHolder;
 import leavesc.hello.network.http.basis.config.HttpCode;
-import leavesc.hello.network.http.basis.config.HttpConfig;
 import leavesc.hello.network.http.basis.exception.AccountInvalidException;
 import leavesc.hello.network.http.basis.exception.ServerResultException;
 import leavesc.hello.network.http.basis.exception.TokenInvalidException;
@@ -71,7 +69,7 @@ public class RetrofitManagement {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(httpLoggingInterceptor);
-            builder.addInterceptor(new ChuckInterceptor(ContextHolder.getContext()));
+            builder.addInterceptor(new MonitorInterceptor(ContextHolder.getContext()));
         }
         OkHttpClient client = builder.build();
         return new Retrofit.Builder()
@@ -117,10 +115,6 @@ public class RetrofitManagement {
                 }
             }
         });
-    }
-
-    <T> T getService(Class<T> clz) {
-        return getService(clz, HttpConfig.BASE_URL_WEATHER);
     }
 
     <T> T getService(Class<T> clz, String host) {

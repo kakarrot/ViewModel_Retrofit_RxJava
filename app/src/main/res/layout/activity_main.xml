@@ -4,7 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/tip"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
 
     <Button
         android:layout_width="match_parent"
@@ -28,6 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="failExample"
-        android:text="请求失示例" />
+        android:text="请求失败示例" />
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 import leavesc.hello.network.http.basis.callback.RequestCallback;
+import leavesc.hello.network.http.basis.config.HttpConfig;
 import leavesc.hello.network.http.basis.model.BaseResponseBody;
 import leavesc.hello.network.viewmodel.base.BaseViewModel;
 
@@ -33,7 +34,7 @@ public abstract class BaseRemoteDataSource {
     }
 
     protected <T> T getService(Class<T> clz) {
-        return RetrofitManagement.getInstance().getService(clz);
+        return getService(clz, HttpConfig.BASE_URL_WEATHER);
     }
 
     protected <T> T getService(Class<T> clz, String host) {
@@ -89,7 +90,7 @@ public abstract class BaseRemoteDataSource {
         }
     }
 
-    private void startLoading() {
+    private void showLoading() {
         if (baseViewModel != null) {
             baseViewModel.startLoading();
         }
@@ -106,7 +107,7 @@ public abstract class BaseRemoteDataSource {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable -> startLoading())
+                .doOnSubscribe(disposable -> showLoading())
                 .doFinally((Action) () -> {
                     if (isDismiss) {
                         dismissLoading();
