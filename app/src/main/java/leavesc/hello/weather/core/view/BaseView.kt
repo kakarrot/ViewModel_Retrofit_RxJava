@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
-import leavesc.hello.weather.R
 import leavesc.hello.weather.core.http.IIBaseViewModelEventObserver
 import leavesc.hello.weather.core.http.viewmodel.BaseViewModel
 
@@ -47,8 +45,8 @@ abstract class BaseActivity : AppCompatActivity(), IIBaseViewModelEventObserver 
 
     override fun dismissLoading() {
         loadDialog?.let {
-            if (loadDialog!!.isShowing) {
-                loadDialog!!.dismiss()
+            if (it.isShowing) {
+                it.dismiss()
             }
         }
     }
@@ -61,12 +59,8 @@ abstract class BaseActivity : AppCompatActivity(), IIBaseViewModelEventObserver 
 
     }
 
-    override fun initViewModel(): BaseViewModel? = null
-
-    override fun initViewModelList(): MutableList<BaseViewModel>? = null
-
     fun <T : BaseViewModel> getViewModel(clazz: Class<T>) =
-        ViewModelProviders.of(this).get(clazz)
+            ViewModelProviders.of(this).get(clazz)
 
 }
 
@@ -98,8 +92,8 @@ abstract class BaseFragment : Fragment(), IIBaseViewModelEventObserver {
 
     override fun dismissLoading() {
         loadDialog?.let {
-            if (loadDialog!!.isShowing) {
-                loadDialog!!.dismiss()
+            if (it.isShowing) {
+                it.dismiss()
             }
         }
     }
@@ -112,18 +106,7 @@ abstract class BaseFragment : Fragment(), IIBaseViewModelEventObserver {
 
     }
 
-    override fun initViewModel(): BaseViewModel? = null
-
-    override fun initViewModelList(): MutableList<BaseViewModel>? = null
-
     fun <T : BaseViewModel> getViewModel(clazz: Class<T>) =
-        ViewModelProviders.of(this).get(clazz)
-
-    protected fun initTopBar(title: String) {
-        val view = view?.findViewById<TextView>(R.id.tv_topBarTitle)
-        view?.apply {
-            text = title
-        }
-    }
+            ViewModelProviders.of(this).get(clazz)
 
 }

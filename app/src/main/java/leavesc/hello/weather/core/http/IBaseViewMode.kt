@@ -33,9 +33,13 @@ interface IBaseViewModelEvent {
 
 interface IIBaseViewModelEventObserver : IBaseViewModelEvent {
 
-    fun initViewModel(): BaseViewModel?
+    fun initViewModel(): BaseViewModel? {
+        return null
+    }
 
-    fun initViewModelList(): MutableList<BaseViewModel>?
+    fun initViewModelList(): MutableList<BaseViewModel>? {
+        return null
+    }
 
     fun getLifecycleOwner(): LifecycleOwner
 
