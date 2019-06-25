@@ -3,31 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/normalBg"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="queryWeather"
-        android:text="查询天气" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="queryNews"
-        android:text="查询新闻" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="createQrCode"
-        android:text="创建二维码" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="failExample"
-        android:text="请求失败示例" />
-
-</LinearLayout>
+    android:padding="10dp"
+    tools:context=".ui.MainActivity" />
